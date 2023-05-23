@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'Wix';
+  font-weight: 500;
+  src: url('../assets/fonts/WixMadeforText-Medium.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Wix';
+  font-weight: 700;
+  src: url('../assets/fonts/WixMadeforText-Bold.ttf');
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+  padding: var(--gap3) var(--gap4);
+  font-family: 'Wix';
+  font-weight: 500;
+  color: var(--color-dark);
+}
+
+section {
+  display: flex;
+  padding: var(--gap) var(--gap2);
+  border-bottom: 2px solid var(--color-dark);
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  width: 140px;
+  height: 30px;
+  padding: calc(var(--gap) / 2) var(--gap);
+  text-align: start;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--color-white);
+  transition: background-color 0.2s;
+  border: 2px solid transparent;
+}
+
+button:focus-visible {
+  border: 2px dashed var(--color-bluish-dark);
+  outline: none;
+}
+
+button:hover {
+  background-color: var(--color-gray);
+}
+
+button:disabled {
+  color: var(--color-disabled);
+  cursor: default;
+  background-color: var(--color-gray);
+}
+
+.errorMessage {
+  color: var(--color-error);
+}

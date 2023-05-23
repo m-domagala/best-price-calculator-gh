@@ -1,34 +1,82 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
-import './App.scss';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import ErrorMessage from './components/messages/ErrorMessage/ErrorMessage';
+import LoadingMessage from './components/messages/LoadingMessage/LoadingMessage';
+import Select from './components/common/Select/Select';
+import { IPriceList, TId, TIds } from './types/types';
+import {
+  API_URL,
+  DATA_QUERY,
+  PRICELISTS_LABEL,
+  PRICELISTS_PLACEHOLDER,
+  PRICELISTS_DISABLED_MESSAGE,
+  PRODUCTS_LABEL,
+  PRODUCTS_PLACEHOLDER,
+  PRODUCTS_NO_PRICELIST_MESSAGE,
+  PRODUCTS_NO_PRODUCTS_MESSAGE,
+} from './constants/constants';
+import styles from './App.module.scss';
+import { getElementsByIds, getPriceListProductsById } from './helpers/helpers';
+import MultiSelect from './components/common/Select/MultiSelect';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { isLoading, error, data } = useQuery(DATA_QUERY, () =>
+    axios(API_URL).then((response) => response.data),
+  );
+  const [activePriceList, setActivePriceList] = useState<TId>(null);
+  const [selectedProducts, setSelectedProducts] = useState<TIds>([]);
 
   return (
-    <>
-      <div>
-        <a href='https://vitejs.dev' target='_blank' rel='noreferrer'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://react.dev' target='_blank' rel='noreferrer'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main className={styles.app}>
+      {isLoading && <LoadingMessage />}
+      {error && <ErrorMessage error={error} />}
+      {data && (
+        <>
+          <section>
+            <Select
+              data={data.priceLists.map((priceList: IPriceList) => ({
+                id: priceList.id,
+                name: priceList.name,
+              }))}
+              stateValue={activePriceList}
+              setStateValue={setActivePriceList}
+              label={PRICELISTS_LABEL}
+              defaultPlaceholder={PRICELISTS_PLACEHOLDER}
+              disabledMessage={PRICELISTS_DISABLED_MESSAGE}
+            />
+            <MultiSelect
+              data={getElementsByIds(
+                getPriceListProductsById(activePriceList, data.priceLists),
+                data.products,
+              )}
+              stateValue={selectedProducts}
+              setStateValue={setSelectedProducts}
+              label={PRODUCTS_LABEL}
+              defaultPlaceholder={PRODUCTS_PLACEHOLDER}
+              disabledMessage={
+                activePriceList !== null
+                  ? PRODUCTS_NO_PRODUCTS_MESSAGE
+                  : PRODUCTS_NO_PRICELIST_MESSAGE
+              }
+            />
+          </section>
+          <section>
+            <Select
+              data={data.priceLists.map((priceList: IPriceList) => ({
+                id: priceList.id,
+                name: priceList.name,
+              }))}
+              stateValue={activePriceList}
+              setStateValue={setActivePriceList}
+              label={PRICELISTS_LABEL}
+              defaultPlaceholder={PRICELISTS_PLACEHOLDER}
+              disabledMessage={PRICELISTS_DISABLED_MESSAGE}
+            />
+          </section>
+        </>
+      )}
+    </main>
   );
 }
 
