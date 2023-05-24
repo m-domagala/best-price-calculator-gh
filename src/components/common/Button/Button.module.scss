@@ -3,9 +3,14 @@
   justify-content: space-between;
   align-items: center;
 
-  .icon {
+  .chevronIcon {
     pointer-events: none;
+    user-select: none;
     transition: transform 0.2s;
+  }
+
+  .checkmarkIcon {
+    visibility: hidden;
   }
 
   .tooltipAnchor {
@@ -51,8 +56,14 @@
 }
 
 .button.open {
-  .icon {
+  .chevronIcon {
     transform: rotate(180deg);
+  }
+}
+
+.button.active {
+  .checkmarkIcon {
+    visibility: visible;
   }
 }
 

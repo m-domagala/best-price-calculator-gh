@@ -13,25 +13,30 @@ export type TRefElement = React.RefObject<HTMLElement>;
 export interface IDataElement {
   id: string;
   name: string;
-  requiredProductId?: string;
 }
 
-export interface ISelect {
+export interface IDataProduct extends IDataElement {
+  requiredProductId?: string;
+  requiredForProductId?: string;
+}
+
+export interface ISelectCommon {
+  label: string;
+  defaultPlaceholder: string;
+  disabledMessage: string;
+}
+
+export interface ISelect extends ISelectCommon {
   stateValue: TId;
   setStateValue: TSetId;
   data: IDataElement[];
-  label: string;
-  defaultPlaceholder: string;
-  disabledMessage: string;
+  additionalOnChangeAction?: () => void;
 }
 
-export interface IMultiSelect {
+export interface IMultiSelect extends ISelectCommon {
   stateValue: TIds;
   setStateValue: TSetIds;
-  data: IDataElement[];
-  label: string;
-  defaultPlaceholder: string;
-  disabledMessage: string;
+  data: IDataProduct[];
 }
 
 export interface IPriceListProduct {
@@ -43,4 +48,12 @@ export interface IPriceList {
   id: string;
   name: string;
   products: IPriceListProduct[];
+}
+
+export interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  disabledMessage?: string;
+  icon?: 'chevron' | 'checkmark';
+  isActive?: boolean;
+  isOpen?: boolean;
+  name: string;
 }

@@ -12,6 +12,7 @@ function Select({
   label,
   defaultPlaceholder,
   disabledMessage,
+  additionalOnChangeAction,
 }: ISelect) {
   const { isOpen, toggleOpen, optionsRef, selectRef, scrollHeight } =
     useSelect();
@@ -28,6 +29,8 @@ function Select({
   const handleOptionClick = (id: string) => {
     setStateValue(id);
     toggleOpen();
+    if (additionalOnChangeAction === undefined) return;
+    additionalOnChangeAction();
   };
 
   return (
@@ -42,7 +45,7 @@ function Select({
           name={placeholder}
           disabled={isSelectDisabled}
           disabledMessage={disabledMessage}
-          isIcon
+          icon='chevron'
           isOpen={isOpen}
         />
         <ul

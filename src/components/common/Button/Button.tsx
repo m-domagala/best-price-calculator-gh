@@ -1,27 +1,25 @@
-import { ButtonHTMLAttributes } from 'react';
 import Tooltip from './Tooltip/Tooltip';
 import LockIcon from '../../../assets/svgs/lock.svg';
 import ChevronIcon from '../../../assets/svgs/chevron.svg';
-import styles from './Button.module.scss';
+import CheckmarkIcon from '../../../assets/svgs/checkmark.svg';
+import { IButton } from '../../../types/types';
 
-export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-  name: string;
-  isIcon?: boolean;
-  isOpen?: boolean;
-  disabledMessage?: string;
-}
+import styles from './Button.module.scss';
 
 function Button({
   disabled,
   disabledMessage,
-  name,
-  isIcon,
+  icon,
+  isActive,
   isOpen,
+  name,
   ...rest
 }: IButton) {
   return (
     <button
-      className={`${styles.button} ${isOpen ? styles.open : ''}`}
+      className={`${styles.button} ${isOpen ? styles.open : ''} ${
+        isActive ? styles.active : ''
+      }`}
       disabled={disabled}
       {...rest}
     >
@@ -32,9 +30,20 @@ function Button({
           {disabledMessage && <Tooltip message={disabledMessage} />}
         </>
       ) : (
-        isIcon && (
-          <img className={styles.icon} src={ChevronIcon} alt='Chevron icon' />
-        )
+        icon &&
+        (icon === 'chevron' ? (
+          <img
+            className={styles.chevronIcon}
+            src={ChevronIcon}
+            alt='Chevron icon'
+          />
+        ) : (
+          <img
+            className={styles.checkmarkIcon}
+            src={CheckmarkIcon}
+            alt='Checkmark icon'
+          />
+        ))
       )}
     </button>
   );

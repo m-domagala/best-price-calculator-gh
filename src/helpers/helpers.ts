@@ -38,3 +38,11 @@ export const closeElementOnOutsideAction = (
     setIsOpen(false);
   }
 };
+
+export const checkIsElementRestricted = (
+  requireElementId: string,
+  selectedElements: string[],
+) => {
+  if (selectedElements.includes(requireElementId)) return false;
+  return true;
+};

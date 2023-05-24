@@ -41,6 +41,7 @@ function App() {
               }))}
               stateValue={activePriceList}
               setStateValue={setActivePriceList}
+              additionalOnChangeAction={() => setSelectedProducts([])}
               label={PRICELISTS_LABEL}
               defaultPlaceholder={PRICELISTS_PLACEHOLDER}
               disabledMessage={PRICELISTS_DISABLED_MESSAGE}
@@ -59,19 +60,6 @@ function App() {
                   ? PRODUCTS_NO_PRODUCTS_MESSAGE
                   : PRODUCTS_NO_PRICELIST_MESSAGE
               }
-            />
-          </section>
-          <section>
-            <Select
-              data={data.priceLists.map((priceList: IPriceList) => ({
-                id: priceList.id,
-                name: priceList.name,
-              }))}
-              stateValue={activePriceList}
-              setStateValue={setActivePriceList}
-              label={PRICELISTS_LABEL}
-              defaultPlaceholder={PRICELISTS_PLACEHOLDER}
-              disabledMessage={PRICELISTS_DISABLED_MESSAGE}
             />
           </section>
         </>

@@ -24,7 +24,7 @@
       {
         "id": "kealFxyyP9KfHfYfnGMPF",
         "name": "Internet + telewizja",
-        "requiredProductIds": [
+        "requiredProductsIds": [
           "uzhCixiiBJXgNb6GG2SMC",
           "ADHsLYxXKo_6elF-0cFoS"
         ],
@@ -33,11 +33,10 @@
       {
         "id": "XOnET7zX7r_RmzKH11HWM",
         "name": "Internet + abonament telefoniczny",
-        "requiredProductIds": ["uzhCixiiBJXgNb6GG2SMC", "4Y39mcqPv7D3M1eU6hRQC"]
-      },
-      {
-        "id": "Ghv3rbkdSJzfTsRo4CYpb",
-        "name": "Internet + telewizja"
+        "requiredProductsIds": [
+          "uzhCixiiBJXgNb6GG2SMC",
+          "4Y39mcqPv7D3M1eU6hRQC"
+        ]
       }
     ],
 

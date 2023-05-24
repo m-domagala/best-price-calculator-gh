@@ -3,7 +3,10 @@ import useSelect from './useSelect';
 import { IMultiSelect } from '../../../types/types';
 import styles from './Select.module.scss';
 import Button from '../Button/Button';
-import { getElementNameByID } from '../../../helpers/helpers';
+import {
+  getElementNameByID,
+  checkIsElementRestricted,
+} from '../../../helpers/helpers';
 
 function MultiSelect({
   stateValue,
@@ -22,23 +25,22 @@ function MultiSelect({
 
   const isSelectDisabled = data.length < 1;
 
-  const handleOptionClick = (id: string) => {
+  const handleOptionClick = (
+    id: string,
+    requiredForProductId: string | undefined,
+  ) => {
     let newState;
     if (stateValue.includes(id)) {
-      newState = stateValue.filter((element) => element !== id);
+      newState = stateValue.filter(
+        (element) => element !== id && element !== requiredForProductId,
+      );
     } else {
       newState = [...stateValue, id];
     }
     setStateValue(newState);
   };
 
-  const checkIsElementRestricted = (
-    requireElementId: string,
-    selectedElements: string[],
-  ) => {
-    if (selectedElements.includes(requireElementId)) return false;
-    return true;
-  };
+  console.log('multiselect state', stateValue);
 
   return (
     <div>
@@ -52,7 +54,7 @@ function MultiSelect({
           name={placeholder}
           disabled={isSelectDisabled}
           disabledMessage={disabledMessage}
-          isIcon
+          icon='chevron'
           isOpen={isOpen}
         />
         <ul
@@ -63,7 +65,9 @@ function MultiSelect({
           {data.map((option) => (
             <li key={nanoid()}>
               <Button
-                onClick={() => handleOptionClick(option.id)}
+                onClick={() =>
+                  handleOptionClick(option.id, option.requiredForProductId)
+                }
                 tabIndex={-1}
                 name={option.name}
                 disabled={
@@ -81,6 +85,8 @@ function MultiSelect({
                     data,
                   )}"`
                 }
+                icon='checkmark'
+                isActive={stateValue.includes(option.id)}
               />
             </li>
           ))}
