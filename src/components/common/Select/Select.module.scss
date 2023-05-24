@@ -1,17 +1,20 @@
-.select {
-  margin-top: var(--gap);
-  border-radius: 3px;
-  border: 1px solid var(--color-dark);
-  .options {
-    overflow: hidden;
-    visibility: hidden;
-    transition: height 0.2s, visibility 0s 0.2s;
+.selectContainer {
+  width: var(--btn-width);
+  .select {
+    margin-top: var(--gap);
+    border-radius: 3px;
+    border: 1px solid var(--color-dark);
+    .options {
+      overflow: hidden;
+      visibility: hidden;
+      transition: height 0.2s, visibility 0s 0.2s;
+    }
   }
-}
 
-.select.open {
-  .options {
-    visibility: visible;
-    transition: height 0.2s, visibility 0s 0s;
+  .select.open {
+    .options {
+      visibility: visible;
+      transition: height 0.2s, visibility 0s 0s;
+    }
   }
 }

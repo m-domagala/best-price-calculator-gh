@@ -1,7 +1,6 @@
 .app {
-  width: 100%;
-  max-width: 1024px;
   margin: 0 auto;
+  width: fit-content;
   background-color: var(--color-bluish-light);
   border-radius: 10px;
   border: 2px solid var(--color-dark);

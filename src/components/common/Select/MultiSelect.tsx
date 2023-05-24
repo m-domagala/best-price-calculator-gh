@@ -43,7 +43,7 @@ function MultiSelect({
   console.log('multiselect state', stateValue);
 
   return (
-    <div>
+    <div className={styles.selectContainer}>
       <p>{label}</p>
       <div
         className={`${styles.select} ${isOpen ? styles.open : ''}`}

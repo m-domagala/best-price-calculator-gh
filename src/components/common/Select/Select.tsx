@@ -34,7 +34,7 @@ function Select({
   };
 
   return (
-    <div>
+    <div className={styles.selectContainer}>
       <p>{label}</p>
       <div
         className={`${styles.select} ${isOpen ? styles.open : ''}`}

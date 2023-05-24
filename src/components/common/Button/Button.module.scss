@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--gap2);
 
   .chevronIcon {
     pointer-events: none;
@@ -18,39 +19,40 @@
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.2s;
-    .tooltip {
+  }
+
+  .tooltip {
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: calc(var(--btn-width) - 8px);
+    transform: translateY(-50%);
+    padding: var(--gap) var(--gap2);
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 45%;
+    color: var(--color-error);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-dark);
+    &::before,
+    &::after {
+      content: '';
       position: absolute;
       top: 50%;
-      left: 140px;
+      right: 100%;
       transform: translateY(-50%);
-      padding: var(--gap) var(--gap2);
-      font-size: 12px;
-      font-weight: 700;
-      border-radius: 45%;
-      color: var(--color-error);
-      background-color: var(--color-white);
-      border: 1px solid var(--color-dark);
-
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: 100%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-      }
-      &::before {
-        border-top: 4px solid transparent;
-        border-bottom: 4px solid transparent;
-        border-right: 10px solid var(--color-dark);
-      }
-      &:after {
-        border-top: 3px solid transparent;
-        border-bottom: 3px solid transparent;
-        border-right: 8px solid var(--color-white);
-      }
+      width: 0;
+      height: 0;
+    }
+    &::before {
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-right: 10px solid var(--color-dark);
+    }
+    &::after {
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-right: 8px solid var(--color-white);
     }
   }
 }
@@ -71,5 +73,30 @@
   .tooltipAnchor {
     visibility: visible;
     opacity: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .button {
+    .tooltip {
+      transform: translate(calc(-100% - 40px), -50%);
+      &::before,
+      &::after {
+        right: auto;
+        left: 100%;
+      }
+      &::before {
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 10px solid var(--color-dark);
+        border-right: none;
+      }
+      &::after {
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        border-left: 8px solid var(--color-white);
+        border-right: none;
+      }
+    }
   }
 }
