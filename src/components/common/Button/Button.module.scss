@@ -4,6 +4,12 @@
   align-items: center;
   gap: var(--gap2);
 
+  .text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
   .chevronIcon {
     pointer-events: none;
     user-select: none;
@@ -25,7 +31,7 @@
     pointer-events: none;
     position: absolute;
     top: 50%;
-    left: calc(var(--btn-width) - 8px);
+    left: calc(var(--element-width) - 8px);
     transform: translateY(-50%);
     padding: var(--gap) var(--gap2);
     font-size: 12px;

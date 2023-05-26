@@ -23,7 +23,7 @@ function Button({
       disabled={disabled}
       {...rest}
     >
-      {name}
+      <p className={styles.text}>{name}</p>
       {disabled ? (
         <>
           <img src={LockIcon} alt='Lock icon' />

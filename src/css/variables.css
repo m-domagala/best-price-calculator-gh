@@ -13,5 +13,6 @@
   --gap3: calc(var(--gap) * 3);
   --gap4: calc(var(--gap) * 4);
 
-  --btn-width: 280px;
+  --element-height: 30px;
+  --element-width: 280px;
 }

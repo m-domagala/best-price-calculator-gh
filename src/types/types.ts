@@ -10,14 +10,44 @@ export type TSetBoolean = React.Dispatch<React.SetStateAction<boolean>>;
 
 export type TRefElement = React.RefObject<HTMLElement>;
 
-export interface IDataElement {
+export interface IDataNamedShared {
   id: string;
   name: string;
 }
 
-export interface IDataProduct extends IDataElement {
+export interface IDataProduct extends IDataNamedShared {
   requiredProductId?: string;
   requiredForProductId?: string;
+}
+
+export interface IDataSpecialOffer extends IDataNamedShared {
+  requiredProductsIds: string[];
+  freeProductId?: string;
+}
+
+export type TDataNamedElement = IDataProduct | IDataSpecialOffer;
+
+export interface IDataPricedShared {
+  price: number;
+}
+
+export interface IDataPriceListProduct extends IDataPricedShared {
+  productId: string;
+}
+
+export interface IDataPriceListSpecialOffer extends IDataPricedShared {
+  specialOfferId: string;
+}
+
+export type TDataPricedElement =
+  | IDataPriceListProduct
+  | IDataPriceListSpecialOffer;
+
+export interface IDataPriceList {
+  id: string;
+  name: string;
+  products: IDataPriceListProduct[];
+  specialOffers: IDataPriceListSpecialOffer[];
 }
 
 export interface ISelectCommon {
@@ -29,7 +59,7 @@ export interface ISelectCommon {
 export interface ISelect extends ISelectCommon {
   stateValue: TId;
   setStateValue: TSetId;
-  data: IDataElement[];
+  data: IDataNamedShared[];
   additionalOnChangeAction?: () => void;
 }
 
@@ -39,21 +69,19 @@ export interface IMultiSelect extends ISelectCommon {
   data: IDataProduct[];
 }
 
-export interface IPriceListProduct {
-  productId: string;
-  price: number;
-}
-
-export interface IPriceList {
-  id: string;
-  name: string;
-  products: IPriceListProduct[];
-}
-
 export interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabledMessage?: string;
   icon?: 'chevron' | 'checkmark';
   isActive?: boolean;
   isOpen?: boolean;
   name: string;
+}
+
+export interface IListElement {
+  name: string;
+  price: number;
+}
+
+export interface IList {
+  data: IListElement[];
 }

@@ -1,29 +1,40 @@
 import {
-  IDataElement,
+  TId,
   TRefElement,
   TSetBoolean,
-  TId,
-  IPriceList,
+  IDataNamedShared,
+  TDataPricedElement,
+  TDataNamedElement,
+  IDataPriceList,
 } from '../types/types';
 
-export const getPriceListProducts = (id: TId, data: IPriceList[]) => {
-  const priceList = data.find((element) => element.id === id);
-  return priceList?.products;
-};
-
-export const getElementNameByID = (id: TId, data: IDataElement[]) => {
+export const getElementName = (id: TId, data: TDataNamedElement[]) => {
   const dataElement = data.find((element) => element.id === id);
   return dataElement?.name;
 };
 
-export const getPriceListProductsById = (id: TId, data: IPriceList[]) => {
-  const priceListProducts = data
-    .find((element) => element.id === id)
-    ?.products.map((product) => product.productId);
-  return priceListProducts || [];
+export const getElementPrice = (id: TId, data: TDataPricedElement[]) => {
+  const idKey = Object.keys(data[0])[0] as keyof TDataPricedElement;
+  const dataElement = data.find((element) => String(element[idKey]) === id);
+  return dataElement?.price;
 };
 
-export const getElementsByIds = (ids: TId[], data: IDataElement[]) => {
+export const getPriceListProducts = (id: TId, data: IDataPriceList[]) => {
+  const priceList = data.find((element) => element.id === id);
+  return priceList?.products;
+};
+
+export const getPriceListProductsIds = (
+  priceListId: TId,
+  priceLists: IDataPriceList[],
+) => {
+  const priceListProductsIds = priceLists
+    .find((priceList) => priceList.id === priceListId)
+    ?.products.map((product) => product.productId);
+  return priceListProductsIds || [];
+};
+
+export const getElements = (ids: TId[], data: IDataNamedShared[]) => {
   const filteredData = data.filter((element) => ids.includes(element.id));
   return filteredData;
 };
@@ -46,3 +57,5 @@ export const checkIsElementRestricted = (
   if (selectedElements.includes(requireElementId)) return false;
   return true;
 };
+
+// export const getElementKeyValueById = (id: string, key: string) => {};

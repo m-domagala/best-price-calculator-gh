@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import useSelect from './useSelect';
-import { IDataElement, ISelect } from '../../../types/types';
-import { getElementNameByID } from '../../../helpers/helpers';
+import { IDataNamedShared, ISelect } from '../../../types/types';
+import { getElementName } from '../../../helpers/helpers';
 import styles from './Select.module.scss';
 import Button from '../Button/Button';
 
@@ -18,11 +18,10 @@ function Select({
     useSelect();
 
   const options = data.filter(
-    (element: IDataElement) => element.id !== stateValue,
+    (element: IDataNamedShared) => element.id !== stateValue,
   );
 
-  const placeholder =
-    getElementNameByID(stateValue, data) || defaultPlaceholder;
+  const placeholder = getElementName(stateValue, data) || defaultPlaceholder;
 
   const isSelectDisabled = data.length < 1;
 
@@ -50,7 +49,9 @@ function Select({
         />
         <ul
           className={styles.options}
-          style={{ height: `${scrollHeight}px` }}
+          style={{
+            height: `${scrollHeight}px`,
+          }}
           ref={optionsRef}
         >
           {options.map((option) => (

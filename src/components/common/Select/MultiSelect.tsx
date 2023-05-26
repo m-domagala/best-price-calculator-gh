@@ -4,7 +4,7 @@ import { IMultiSelect } from '../../../types/types';
 import styles from './Select.module.scss';
 import Button from '../Button/Button';
 import {
-  getElementNameByID,
+  getElementName,
   checkIsElementRestricted,
 } from '../../../helpers/helpers';
 
@@ -40,8 +40,6 @@ function MultiSelect({
     setStateValue(newState);
   };
 
-  console.log('multiselect state', stateValue);
-
   return (
     <div className={styles.selectContainer}>
       <p>{label}</p>
@@ -57,9 +55,12 @@ function MultiSelect({
           icon='chevron'
           isOpen={isOpen}
         />
+
         <ul
           className={styles.options}
-          style={{ height: `${scrollHeight}px` }}
+          style={{
+            height: `${scrollHeight}px`,
+          }}
           ref={optionsRef}
         >
           {data.map((option) => (
@@ -80,7 +81,7 @@ function MultiSelect({
                 }
                 disabledMessage={
                   option.requiredProductId &&
-                  `Wymagany produkt: "${getElementNameByID(
+                  `Wymagany produkt: "${getElementName(
                     option.requiredProductId,
                     data,
                   )}"`
