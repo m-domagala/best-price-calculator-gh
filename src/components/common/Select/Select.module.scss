@@ -1,5 +1,9 @@
 .selectContainer {
   width: var(--element-width);
+  @media (max-width: 768px) {
+    min-width: var(--element-width);
+    width: 100%;
+  }
 
   .select {
     margin-top: var(--gap);

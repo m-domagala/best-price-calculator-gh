@@ -44,7 +44,7 @@
     "priceLists": [
       {
         "id": "U0wvgmsNZoyVD1DxA_-tj",
-        "name": "2023",
+        "year": 2023,
         "products": [
           {
             "productId": "uzhCixiiBJXgNb6GG2SMC",
@@ -76,7 +76,7 @@
       },
       {
         "id": "3wgMj-xBnLeki9Klw3IBS",
-        "name": "2024",
+        "year": 2024,
         "products": [
           {
             "productId": "uzhCixiiBJXgNb6GG2SMC",
@@ -108,7 +108,7 @@
       },
       {
         "id": "EGT5WC3ZgrKPIFCjokbzH",
-        "name": "2025",
+        "year": 2025,
         "products": [
           {
             "productId": "uzhCixiiBJXgNb6GG2SMC",

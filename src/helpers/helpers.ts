@@ -2,41 +2,46 @@ import {
   TId,
   TRefElement,
   TSetBoolean,
-  IDataNamedShared,
   TDataPricedElement,
   TDataNamedElement,
   IDataPriceList,
+  IDataProduct,
 } from '../types/types';
 
-export const getElementName = (id: TId, data: TDataNamedElement[]) => {
-  const dataElement = data.find((element) => element.id === id);
+export const getElementName = (elementId: TId, data: TDataNamedElement[]) => {
+  const dataElement = data.find((element) => element.id === elementId);
   return dataElement?.name;
 };
 
-export const getElementPrice = (id: TId, data: TDataPricedElement[]) => {
+export const getElementPrice = (elementId: TId, data: TDataPricedElement[]) => {
   const idKey = Object.keys(data[0])[0] as keyof TDataPricedElement;
-  const dataElement = data.find((element) => String(element[idKey]) === id);
+  const dataElement = data.find(
+    (element) => String(element[idKey]) === elementId,
+  );
   return dataElement?.price;
 };
 
-export const getPriceListProducts = (id: TId, data: IDataPriceList[]) => {
-  const priceList = data.find((element) => element.id === id);
-  return priceList?.products;
+export const getPriceListProducts = (
+  priceListId: TId,
+  data: IDataPriceList[],
+) => {
+  const priceList = data.find((element) => element.id === priceListId);
+  return priceList?.products || [];
 };
 
 export const getPriceListProductsIds = (
   priceListId: TId,
-  priceLists: IDataPriceList[],
+  data: IDataPriceList[],
 ) => {
-  const priceListProductsIds = priceLists
-    .find((priceList) => priceList.id === priceListId)
-    ?.products.map((product) => product.productId);
+  const priceListProductsIds = getPriceListProducts(priceListId, data).map(
+    (product) => product.productId,
+  );
   return priceListProductsIds || [];
 };
 
-export const getElements = (ids: TId[], data: IDataNamedShared[]) => {
-  const filteredData = data.filter((element) => ids.includes(element.id));
-  return filteredData;
+export const getProducts = (productsIds: TId[], data: IDataProduct[]) => {
+  const products = data.filter((element) => productsIds.includes(element.id));
+  return products;
 };
 
 export const closeElementOnOutsideAction = (
@@ -58,4 +63,14 @@ export const checkIsElementRestricted = (
   return true;
 };
 
-// export const getElementKeyValueById = (id: string, key: string) => {};
+export const checkHasDataUndefinedElement = (data: object[]) => {
+  for (const element of data) {
+    const objectValues = Object.values(element);
+    for (const value of objectValues) {
+      if (value === undefined) {
+        return true;
+      }
+    }
+  }
+  return false;
+};

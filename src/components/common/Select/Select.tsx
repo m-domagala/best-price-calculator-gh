@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import useSelect from './useSelect';
-import { IDataNamedShared, ISelect } from '../../../types/types';
+import { ISelect } from '../../../types/types';
 import { getElementName } from '../../../helpers/helpers';
 import styles from './Select.module.scss';
 import Button from '../Button/Button';
@@ -17,9 +17,7 @@ function Select({
   const { isOpen, toggleOpen, optionsRef, selectRef, scrollHeight } =
     useSelect();
 
-  const options = data.filter(
-    (element: IDataNamedShared) => element.id !== stateValue,
-  );
+  const options = data.filter((element) => element.id !== stateValue);
 
   const placeholder = getElementName(stateValue, data) || defaultPlaceholder;
 

@@ -20,6 +20,12 @@
     visibility: hidden;
   }
 
+  .disabledIconContainer {
+    display: flex;
+    width: var(--disabled-icon-size);
+    height: var(--disabled-icon-size);
+  }
+
   .tooltipAnchor {
     position: absolute;
     visibility: hidden;
@@ -30,8 +36,8 @@
   .tooltip {
     pointer-events: none;
     position: absolute;
-    top: 50%;
-    left: calc(var(--element-width) - 8px);
+    top: calc(var(--disabled-icon-size) / 2);
+    left: calc(var(--disabled-icon-size) + 10px);
     transform: translateY(-50%);
     padding: var(--gap) var(--gap2);
     font-size: 12px;
@@ -84,8 +90,13 @@
 
 @media (max-width: 1024px) {
   .button {
+    .text {
+      max-width: 70vw;
+    }
     .tooltip {
-      transform: translate(calc(-100% - 40px), -50%);
+      left: auto;
+      right: calc(var(--disabled-icon-size) - 6px);
+
       &::before,
       &::after {
         right: auto;

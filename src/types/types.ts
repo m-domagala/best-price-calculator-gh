@@ -45,7 +45,7 @@ export type TDataPricedElement =
 
 export interface IDataPriceList {
   id: string;
-  name: string;
+  year: number;
   products: IDataPriceListProduct[];
   specialOffers: IDataPriceListSpecialOffer[];
 }
@@ -78,8 +78,8 @@ export interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export interface IListElement {
-  name: string;
-  price: number;
+  name: string | undefined;
+  price: number | undefined;
 }
 
 export interface IList {

@@ -25,10 +25,10 @@ function Button({
     >
       <p className={styles.text}>{name}</p>
       {disabled ? (
-        <>
+        <div className={styles.disabledIconContainer}>
           <img src={LockIcon} alt='Lock icon' />
           {disabledMessage && <Tooltip message={disabledMessage} />}
-        </>
+        </div>
       ) : (
         icon &&
         (icon === 'chevron' ? (

@@ -17,7 +17,13 @@ import {
   PRODUCTS_NO_PRODUCTS_MESSAGE,
 } from './constants/constants';
 import styles from './App.module.scss';
-import { getElements, getPriceListProductsIds } from './helpers/helpers';
+import {
+  getElementName,
+  getElementPrice,
+  getPriceListProducts,
+  getPriceListProductsIds,
+  getProducts,
+} from './helpers/helpers';
 import MultiSelect from './components/common/Select/MultiSelect';
 import List from './components/List/List';
 
@@ -38,7 +44,7 @@ function App() {
             <Select
               data={data.priceLists.map((priceList: IDataPriceList) => ({
                 id: priceList.id,
-                name: priceList.name,
+                name: String(priceList.year),
               }))}
               stateValue={activePriceList}
               setStateValue={setActivePriceList}
@@ -48,7 +54,7 @@ function App() {
               disabledMessage={PRICELISTS_DISABLED_MESSAGE}
             />
             <MultiSelect
-              data={getElements(
+              data={getProducts(
                 getPriceListProductsIds(activePriceList, data.priceLists),
                 data.products,
               )}
@@ -63,7 +69,21 @@ function App() {
               }
             />
           </section>
-          {selectedProducts.length > 0 && <section>{/* <List /> */}</section>}
+          {selectedProducts.length > 0 && (
+            <section>
+              <List
+                data={selectedProducts.map((selectedProduct) => {
+                  return {
+                    name: getElementName(selectedProduct, data.products),
+                    price: getElementPrice(
+                      selectedProduct,
+                      getPriceListProducts(activePriceList, data.priceLists),
+                    ),
+                  };
+                })}
+              />
+            </section>
+          )}
         </>
       )}
     </main>
