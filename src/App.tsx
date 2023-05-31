@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import ErrorMessage from './components/messages/ErrorMessage/ErrorMessage';
@@ -26,6 +26,7 @@ import {
 } from './helpers/helpers';
 import MultiSelect from './components/common/Select/MultiSelect';
 import List from './components/List/List';
+import SpecialOffer from './components/ActiveSpecialOffer/ActiveSpecialOffer';
 
 function App() {
   const { isLoading, error, data } = useQuery(DATA_QUERY, () =>
@@ -69,7 +70,7 @@ function App() {
               }
             />
           </section>
-          {selectedProducts.length > 0 && (
+          {/* {selectedProducts.length > 0 && (
             <section>
               <List
                 data={selectedProducts.map((selectedProduct) => {
@@ -84,6 +85,13 @@ function App() {
               />
             </section>
           )}
+          <section>
+            <SpecialOffer
+              activePriceList={activePriceList}
+              selectedProducts={selectedProducts}
+              data={data}
+            />
+          </section> */}
         </>
       )}
     </main>

@@ -6,6 +6,7 @@ import {
   TDataNamedElement,
   IDataPriceList,
   IDataProduct,
+  IDataSpecialOffer,
 } from '../types/types';
 
 export const getElementName = (elementId: TId, data: TDataNamedElement[]) => {
@@ -21,6 +22,21 @@ export const getElementPrice = (elementId: TId, data: TDataPricedElement[]) => {
   return dataElement?.price;
 };
 
+export const getProducts = (productsIds: TId[], data: IDataProduct[]) => {
+  const products = data.filter((element) => productsIds.includes(element.id));
+  return products;
+};
+
+export const getSpecialOffers = (
+  specialOffersIds: TId[],
+  data: IDataSpecialOffer[],
+) => {
+  const specialOffers = data.filter((element) =>
+    specialOffersIds.includes(element.id),
+  );
+  return specialOffers;
+};
+
 export const getPriceListProducts = (
   priceListId: TId,
   data: IDataPriceList[],
@@ -34,14 +50,28 @@ export const getPriceListProductsIds = (
   data: IDataPriceList[],
 ) => {
   const priceListProductsIds = getPriceListProducts(priceListId, data).map(
-    (product) => product.productId,
+    (element) => element.productId,
   );
   return priceListProductsIds || [];
 };
 
-export const getProducts = (productsIds: TId[], data: IDataProduct[]) => {
-  const products = data.filter((element) => productsIds.includes(element.id));
-  return products;
+export const getPriceListSpecialOffers = (
+  priceListId: TId,
+  data: IDataPriceList[],
+) => {
+  const priceList = data.find((element) => element.id === priceListId);
+  return priceList?.specialOffers || [];
+};
+
+export const getPriceListSpecialOffersIds = (
+  priceListId: TId,
+  data: IDataPriceList[],
+) => {
+  const priceListSpecialOffersIds = getPriceListSpecialOffers(
+    priceListId,
+    data,
+  ).map((element) => element.specialOfferId);
+  return priceListSpecialOffersIds || [];
 };
 
 export const closeElementOnOutsideAction = (

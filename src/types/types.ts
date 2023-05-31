@@ -50,6 +50,12 @@ export interface IDataPriceList {
   specialOffers: IDataPriceListSpecialOffer[];
 }
 
+export interface IData {
+  products: IDataProduct[];
+  specialOffers: IDataSpecialOffer[];
+  priceLists: IDataPriceList[];
+}
+
 export interface ISelectCommon {
   label: string;
   defaultPlaceholder: string;
