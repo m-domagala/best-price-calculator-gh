@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import useScrollHeight from '../../../hooks/useScrollHeight';
-import { closeElementOnOutsideAction } from '../../../helpers/helpers';
+import { closeElementOnOutsideAction } from '../../../helpers';
 
 const useSelect = () => {
   const [isOpen, setIsOpen] = useState(false);

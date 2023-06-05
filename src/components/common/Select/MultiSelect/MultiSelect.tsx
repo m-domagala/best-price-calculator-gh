@@ -1,16 +1,13 @@
 import { nanoid } from 'nanoid';
-import useSelect from './useSelect';
-import { IMultiSelect } from '../../../types/types';
-import styles from './Select.module.scss';
-import Button from '../Button/Button';
-import {
-  getElementName,
-  checkIsElementRestricted,
-} from '../../../helpers/helpers';
+import Button from '../../Button/Button';
+import useSelect from '../useSelect';
+import { IMultiSelect, ISelectedProductObject } from '../../../../types';
+import { getElementName, checkIsElementRestricted } from '../../../../helpers';
+import styles from './../Select.module.scss';
 
 function MultiSelect({
-  stateValue,
-  setStateValue,
+  stateValues,
+  setStateValues,
   data,
   label,
   defaultPlaceholder,
@@ -19,30 +16,33 @@ function MultiSelect({
   const { isOpen, toggleOpen, optionsRef, selectRef, scrollHeight } =
     useSelect();
 
-  const placeholder = stateValue?.length
-    ? `Wybrane (${stateValue.length})`
+  const placeholder = stateValues?.length
+    ? `Wybrane (${stateValues.length})`
     : defaultPlaceholder;
 
-  const isSelectDisabled = data.length < 1;
+  const isSelectDisabled = !data?.length;
 
-  const handleOptionClick = (
-    id: string,
-    requiredForProductId: string | undefined,
-  ) => {
+  const selectedProductsIds =
+    stateValues?.map((stateValue) => stateValue.id) || [];
+
+  const handleOptionClick = (selectedOption: ISelectedProductObject) => {
+    if (!stateValues) return;
+    const { id, requiredForProductId } = selectedOption;
     let newState;
-    if (stateValue.includes(id)) {
-      newState = stateValue.filter(
-        (element) => element !== id && element !== requiredForProductId,
+    if (selectedProductsIds?.includes(id)) {
+      newState = stateValues?.filter(
+        (stateValue) =>
+          stateValue.id !== id && stateValue.id !== requiredForProductId,
       );
     } else {
-      newState = [...stateValue, id];
+      newState = [...stateValues, selectedOption];
     }
-    setStateValue(newState);
+    setStateValues(newState);
   };
 
   return (
     <div className={styles.selectContainer}>
-      <p>{label}</p>
+      <p className='label'>{label}</p>
       <div
         className={`${styles.select} ${isOpen ? styles.open : ''}`}
         ref={selectRef}
@@ -63,19 +63,17 @@ function MultiSelect({
           }}
           ref={optionsRef}
         >
-          {data.map((option) => (
+          {data?.map((option) => (
             <li key={nanoid()}>
               <Button
-                onClick={() =>
-                  handleOptionClick(option.id, option.requiredForProductId)
-                }
+                onClick={() => handleOptionClick(option)}
                 tabIndex={-1}
                 name={option.name}
                 disabled={
                   option.requiredProductId
                     ? checkIsElementRestricted(
                         option.requiredProductId,
-                        stateValue,
+                        selectedProductsIds,
                       )
                     : false
                 }
@@ -87,7 +85,7 @@ function MultiSelect({
                   )}"`
                 }
                 icon='checkmark'
-                isActive={stateValue.includes(option.id)}
+                isActive={selectedProductsIds.includes(option.id)}
               />
             </li>
           ))}

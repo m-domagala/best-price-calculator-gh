@@ -1,8 +1,4 @@
-export type TId = string | null;
-
 export type TSetId = React.Dispatch<React.SetStateAction<string | null>>;
-
-export type TIds = string[];
 
 export type TSetIds = React.Dispatch<React.SetStateAction<string[]>>;
 
@@ -25,7 +21,7 @@ export interface IDataSpecialOffer extends IDataNamedShared {
   freeProductId?: string;
 }
 
-export type TDataNamedElement = IDataProduct | IDataSpecialOffer;
+export type TDataNamedElement = ISelectedProductObject;
 
 export interface IDataPricedShared {
   price: number;
@@ -50,10 +46,37 @@ export interface IDataPriceList {
   specialOffers: IDataPriceListSpecialOffer[];
 }
 
-export interface IData {
+export interface IDataObject {
   products: IDataProduct[];
   specialOffers: IDataSpecialOffer[];
   priceLists: IDataPriceList[];
+}
+
+export interface ISelectedProductObject {
+  id: string;
+  name?: string;
+  price: number;
+  requiredForProductId?: string;
+  requiredProductId?: string;
+}
+
+export interface IActivePriceListSpecialOffer {
+  id: string;
+  name?: string;
+  price: number;
+  requiredProductsIds?: string[];
+  freeProductId?: string;
+}
+
+export interface IActivePriceListObject {
+  id: string;
+  year: number;
+  products: ISelectedProductObject[];
+  specialOffers: IActivePriceListSpecialOffer[];
+}
+
+export interface IData {
+  data: IDataObject;
 }
 
 export interface ISelectCommon {
@@ -63,16 +86,20 @@ export interface ISelectCommon {
 }
 
 export interface ISelect extends ISelectCommon {
-  stateValue: TId;
-  setStateValue: TSetId;
-  data: IDataNamedShared[];
+  stateValue: IActivePriceListObject | undefined;
+  setStateValue: React.Dispatch<
+    React.SetStateAction<IActivePriceListObject | undefined>
+  >;
+  data: IActivePriceListObject[];
   additionalOnChangeAction?: () => void;
 }
 
 export interface IMultiSelect extends ISelectCommon {
-  stateValue: TIds;
-  setStateValue: TSetIds;
-  data: IDataProduct[];
+  stateValues: ISelectedProductObject[] | undefined;
+  setStateValues: React.Dispatch<
+    React.SetStateAction<ISelectedProductObject[] | undefined>
+  >;
+  data?: ISelectedProductObject[];
 }
 
 export interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -80,14 +107,14 @@ export interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: 'chevron' | 'checkmark';
   isActive?: boolean;
   isOpen?: boolean;
-  name: string;
-}
-
-export interface IListElement {
-  name: string | undefined;
-  price: number | undefined;
+  name?: string;
 }
 
 export interface IList {
-  data: IListElement[];
+  data: ISelectedProductObject[];
+}
+
+export interface IActiveSpecialOffer {
+  activePriceList: IActivePriceListObject;
+  selectedProducts: ISelectedProductObject[];
 }

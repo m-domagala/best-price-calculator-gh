@@ -1,9 +1,8 @@
 import { nanoid } from 'nanoid';
-import useSelect from './useSelect';
-import { ISelect } from '../../../types/types';
-import { getElementName } from '../../../helpers/helpers';
-import styles from './Select.module.scss';
-import Button from '../Button/Button';
+import Button from '../../Button/Button';
+import useSelect from '../useSelect';
+import { ISelect } from '../../../../types';
+import styles from './../Select.module.scss';
 
 function Select({
   stateValue,
@@ -17,29 +16,30 @@ function Select({
   const { isOpen, toggleOpen, optionsRef, selectRef, scrollHeight } =
     useSelect();
 
-  const options = data.filter((element) => element.id !== stateValue);
+  const options = data.filter((element) => element.id !== stateValue?.id);
 
-  const placeholder = getElementName(stateValue, data) || defaultPlaceholder;
+  const placeholder = stateValue?.year || defaultPlaceholder;
 
-  const isSelectDisabled = data.length < 1;
+  const isSelectDisabled = !data.length;
 
   const handleOptionClick = (id: string) => {
-    setStateValue(id);
+    const newState = data.find((element) => element.id === id);
+    setStateValue(newState);
     toggleOpen();
-    if (additionalOnChangeAction === undefined) return;
+    if (!additionalOnChangeAction) return;
     additionalOnChangeAction();
   };
 
   return (
     <div className={styles.selectContainer}>
-      <p>{label}</p>
+      <p className='label'>{label}</p>
       <div
         className={`${styles.select} ${isOpen ? styles.open : ''}`}
         ref={selectRef}
       >
         <Button
           onClick={toggleOpen}
-          name={placeholder}
+          name={String(placeholder)}
           disabled={isSelectDisabled}
           disabledMessage={disabledMessage}
           icon='chevron'
@@ -57,7 +57,7 @@ function Select({
               <Button
                 onClick={() => handleOptionClick(option.id)}
                 tabIndex={-1}
-                name={option.name}
+                name={String(option.year)}
               />
             </li>
           ))}

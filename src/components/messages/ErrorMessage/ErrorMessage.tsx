@@ -6,8 +6,7 @@ function ErrorMessage({ error }: IErrorMessage) {
   return (
     <section>
       <p>
-        Nie udało się pobrać danych:{' '}
-        <b className='errorMessage'>{`"${error}"`}</b>
+        Nie udało się pobrać danych: <b className='color-red'>{`"${error}"`}</b>
       </p>
     </section>
   );

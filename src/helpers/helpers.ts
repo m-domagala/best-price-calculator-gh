@@ -1,5 +1,4 @@
 import {
-  TId,
   TRefElement,
   TSetBoolean,
   TDataPricedElement,
@@ -7,14 +6,36 @@ import {
   IDataPriceList,
   IDataProduct,
   IDataSpecialOffer,
+  IDataObject,
+  IActivePriceListSpecialOffer,
+  ISelectedProductObject,
 } from '../types/types';
 
-export const getElementName = (elementId: TId, data: TDataNamedElement[]) => {
+export const getElementName = (
+  elementId: string,
+  data: TDataNamedElement[],
+) => {
   const dataElement = data.find((element) => element.id === elementId);
   return dataElement?.name;
 };
 
-export const getElementPrice = (elementId: TId, data: TDataPricedElement[]) => {
+export const getProduct = (productId: string, data: IDataProduct[]) => {
+  const product = data.find((element) => element.id === productId);
+  return product;
+};
+
+export const getSpecialOffer = (
+  specialOfferId: string,
+  data: IDataSpecialOffer[],
+) => {
+  const specialOffer = data.find((element) => element.id === specialOfferId);
+  return specialOffer;
+};
+
+export const getElementPrice = (
+  elementId: string,
+  data: TDataPricedElement[],
+) => {
   const idKey = Object.keys(data[0])[0] as keyof TDataPricedElement;
   const dataElement = data.find(
     (element) => String(element[idKey]) === elementId,
@@ -22,13 +43,13 @@ export const getElementPrice = (elementId: TId, data: TDataPricedElement[]) => {
   return dataElement?.price;
 };
 
-export const getProducts = (productsIds: TId[], data: IDataProduct[]) => {
+export const getProducts = (productsIds: string[], data: IDataProduct[]) => {
   const products = data.filter((element) => productsIds.includes(element.id));
   return products;
 };
 
 export const getSpecialOffers = (
-  specialOffersIds: TId[],
+  specialOffersIds: string[],
   data: IDataSpecialOffer[],
 ) => {
   const specialOffers = data.filter((element) =>
@@ -38,7 +59,7 @@ export const getSpecialOffers = (
 };
 
 export const getPriceListProducts = (
-  priceListId: TId,
+  priceListId: string,
   data: IDataPriceList[],
 ) => {
   const priceList = data.find((element) => element.id === priceListId);
@@ -46,7 +67,7 @@ export const getPriceListProducts = (
 };
 
 export const getPriceListProductsIds = (
-  priceListId: TId,
+  priceListId: string,
   data: IDataPriceList[],
 ) => {
   const priceListProductsIds = getPriceListProducts(priceListId, data).map(
@@ -56,7 +77,7 @@ export const getPriceListProductsIds = (
 };
 
 export const getPriceListSpecialOffers = (
-  priceListId: TId,
+  priceListId: string,
   data: IDataPriceList[],
 ) => {
   const priceList = data.find((element) => element.id === priceListId);
@@ -64,7 +85,7 @@ export const getPriceListSpecialOffers = (
 };
 
 export const getPriceListSpecialOffersIds = (
-  priceListId: TId,
+  priceListId: string,
   data: IDataPriceList[],
 ) => {
   const priceListSpecialOffersIds = getPriceListSpecialOffers(
@@ -103,4 +124,43 @@ export const checkHasDataUndefinedElement = (data: object[]) => {
     }
   }
   return false;
+};
+
+export const getTotalPrice = (
+  data: IActivePriceListSpecialOffer[] | ISelectedProductObject[],
+) =>
+  data
+    .map((element) => element.price)
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+export const getPriceListsData = (data: IDataObject) => {
+  const { products, priceLists, specialOffers } = data;
+  return priceLists.map((priceList) => {
+    return {
+      id: priceList.id,
+      year: priceList.year,
+      products: priceList.products.map((priceListProduct) => {
+        const { productId, price } = priceListProduct;
+        const product = getProduct(productId, products);
+        return {
+          id: productId,
+          name: product?.name,
+          price: price,
+          requiredForProductId: product?.requiredForProductId,
+          requiredProductId: product?.requiredProductId,
+        };
+      }),
+      specialOffers: priceList.specialOffers.map((priceListSpecialOffer) => {
+        const { specialOfferId, price } = priceListSpecialOffer;
+        const specialOffer = getSpecialOffer(specialOfferId, specialOffers);
+        return {
+          id: specialOfferId,
+          name: specialOffer?.name,
+          price: price,
+          requiredProductsIds: specialOffer?.requiredProductsIds,
+          freeProductId: specialOffer?.freeProductId,
+        };
+      }),
+    };
+  });
 };
