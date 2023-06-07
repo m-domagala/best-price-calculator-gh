@@ -6,6 +6,10 @@
   gap: var(--gap4);
   font-weight: 700;
 
+  .label {
+    letter-spacing: -1px;
+  }
+
   .pricesContainer {
     display: flex;
     gap: calc(var(--gap) / 2);

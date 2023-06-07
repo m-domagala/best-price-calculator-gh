@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import { IList } from '../../../types/types';
+import { CURRENCY } from '../../../constants';
 
 function Products({ data }: IList) {
   return (
@@ -12,7 +13,7 @@ function Products({ data }: IList) {
               <p>{element.name}</p>
               <p className='color-red'>
                 {element.price}
-                <span className='color-dark'>zł</span>
+                <span className='color-dark'>{CURRENCY}</span>
               </p>
             </li>
           ))}

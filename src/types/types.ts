@@ -54,7 +54,7 @@ export interface IDataObject {
 
 export interface ISelectedProductObject {
   id: string;
-  name?: string;
+  name: string;
   price: number;
   requiredForProductId?: string;
   requiredProductId?: string;
@@ -62,9 +62,9 @@ export interface ISelectedProductObject {
 
 export interface IActivePriceListSpecialOffer {
   id: string;
-  name?: string;
+  name: string;
   price: number;
-  requiredProductsIds?: string[];
+  requiredProductsIds: string[];
   freeProductId?: string;
 }
 

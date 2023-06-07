@@ -1,9 +1,14 @@
 import useSummary from './useSummary';
 import { IActiveSpecialOffer } from '../../../types';
 import styles from './Summary.module.scss';
+import {
+  CURRENCY,
+  SPECIALOFFERS_ACTIVE_LABEL,
+  SUMMARY_LABEL,
+} from '../../../constants';
 
 function Summary({ activePriceList, selectedProducts }: IActiveSpecialOffer) {
-  const { priceWithoutDiscount, possibleSpecialOffers, theBestOffer } =
+  const { priceWithoutDiscount, possibleSpecialOffers, theBestOfferObject } =
     useSummary({
       activePriceList,
       selectedProducts,
@@ -14,19 +19,19 @@ function Summary({ activePriceList, selectedProducts }: IActiveSpecialOffer) {
       {possibleSpecialOffers.length > 0 && (
         <section>
           <div className='container'>
-            <p className='label'>Uwzględnione rabaty</p>
+            <p className='label'>{SPECIALOFFERS_ACTIVE_LABEL}</p>
             <div className='rowElement'>
-              <p>{theBestOffer?.name}</p>
+              <p>{theBestOfferObject?.name}</p>
               <p className='color-green'>
-                {theBestOffer?.price}
-                <span className='color-dark'>zł</span>
+                {theBestOfferObject?.price}
+                <span className='color-dark'>{CURRENCY}</span>
               </p>
             </div>
-            {theBestOffer?.freeProductName && (
+            {theBestOfferObject?.freeProductName && (
               <div className='rowElement'>
-                <p>{theBestOffer.freeProductName}</p>
+                <p>{theBestOfferObject.freeProductName}</p>
                 <p className='color-green'>
-                  0<span className='color-dark'>zł</span>
+                  0<span className='color-dark'>{CURRENCY}</span>
                 </p>
               </div>
             )}
@@ -36,19 +41,21 @@ function Summary({ activePriceList, selectedProducts }: IActiveSpecialOffer) {
       {selectedProducts.length > 0 && (
         <section>
           <div className='container'>
-            <div className={`${styles.summary}`}>
-              <p>RAZEM</p>
+            <div className={styles.summary}>
+              <p className={styles.label}>{SUMMARY_LABEL}</p>
               <div className={styles.pricesContainer}>
                 <p
-                  className={`${theBestOffer ? styles.oldPrice : ''} color-red`}
+                  className={`${
+                    theBestOfferObject ? styles.oldPrice : ''
+                  } color-red`}
                 >
                   {priceWithoutDiscount}
-                  <span className='color-dark'>zł</span>
+                  <span className='color-dark'>{CURRENCY}</span>
                 </p>
-                {theBestOffer && (
+                {theBestOfferObject && (
                   <p className='color-green'>
-                    {theBestOffer.totalPrice}
-                    <span className='color-dark'>zł</span>
+                    {theBestOfferObject.totalPrice}
+                    <span className='color-dark'>{CURRENCY}</span>
                   </p>
                 )}
               </div>

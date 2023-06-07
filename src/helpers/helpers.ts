@@ -100,10 +100,9 @@ export const closeElementOnOutsideAction = (
   elementRef: TRefElement,
   setIsOpen: TSetBoolean,
 ) => {
-  if (event.target instanceof HTMLElement) {
-    if (elementRef.current?.contains(event.target)) return;
-    setIsOpen(false);
-  }
+  if (!(event.target instanceof HTMLElement)) return;
+  if (elementRef.current?.contains(event.target)) return;
+  setIsOpen(false);
 };
 
 export const checkIsElementRestricted = (
@@ -126,13 +125,6 @@ export const checkHasDataUndefinedElement = (data: object[]) => {
   return false;
 };
 
-export const getTotalPrice = (
-  data: IActivePriceListSpecialOffer[] | ISelectedProductObject[],
-) =>
-  data
-    .map((element) => element.price)
-    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
 export const getPriceListsData = (data: IDataObject) => {
   const { products, priceLists, specialOffers } = data;
   return priceLists.map((priceList) => {
@@ -142,25 +134,34 @@ export const getPriceListsData = (data: IDataObject) => {
       products: priceList.products.map((priceListProduct) => {
         const { productId, price } = priceListProduct;
         const product = getProduct(productId, products);
-        return {
-          id: productId,
-          name: product?.name,
-          price: price,
-          requiredForProductId: product?.requiredForProductId,
-          requiredProductId: product?.requiredProductId,
-        };
+        if (product)
+          return {
+            id: productId,
+            name: product.name,
+            price: price,
+            requiredForProductId: product.requiredForProductId,
+            requiredProductId: product.requiredProductId,
+          };
       }),
       specialOffers: priceList.specialOffers.map((priceListSpecialOffer) => {
         const { specialOfferId, price } = priceListSpecialOffer;
         const specialOffer = getSpecialOffer(specialOfferId, specialOffers);
-        return {
-          id: specialOfferId,
-          name: specialOffer?.name,
-          price: price,
-          requiredProductsIds: specialOffer?.requiredProductsIds,
-          freeProductId: specialOffer?.freeProductId,
-        };
+        if (specialOffer)
+          return {
+            id: specialOfferId,
+            name: specialOffer.name,
+            price: price,
+            requiredProductsIds: specialOffer.requiredProductsIds,
+            freeProductId: specialOffer.freeProductId,
+          };
       }),
     };
   });
 };
+
+export const getPricesSum = (
+  data: IActivePriceListSpecialOffer[] | ISelectedProductObject[],
+) =>
+  data
+    .map((element) => element.price)
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);

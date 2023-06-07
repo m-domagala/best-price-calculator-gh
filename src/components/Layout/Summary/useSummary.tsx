@@ -1,5 +1,8 @@
-import { IActiveSpecialOffer } from '../../../types';
-import { getTotalPrice } from '../../../helpers';
+import {
+  IActivePriceListSpecialOffer,
+  IActiveSpecialOffer,
+} from '../../../types';
+import { getPricesSum } from '../../../helpers';
 
 const useSummary = ({
   activePriceList,
@@ -9,40 +12,49 @@ const useSummary = ({
     (selectedProduct) => selectedProduct.id,
   );
 
-  const priceWithoutDiscount = getTotalPrice(selectedProducts);
+  const priceWithoutDiscount = getPricesSum(selectedProducts);
 
   const possibleSpecialOffers = activePriceList.specialOffers.filter(
     (specialOffer) => {
-      return specialOffer.requiredProductsIds?.every((id) =>
+      return specialOffer.requiredProductsIds.every((id) =>
         selectedProductsIds.includes(id),
       );
     },
   );
 
+  let freeProductName: string | undefined;
+
+  const getFreeProductName = (specialOffer: IActivePriceListSpecialOffer) => {
+    if (
+      !specialOffer.freeProductId ||
+      !selectedProductsIds.includes(specialOffer.freeProductId)
+    )
+      return;
+    freeProductName = selectedProducts.find(
+      (product) => product.id === specialOffer.freeProductId,
+    )?.name;
+  };
+
   const getTheBestOffer = () => {
     if (possibleSpecialOffers.length === 0) return;
     const specialOffersData = [];
-    let freeProductName;
     for (const specialOffer of possibleSpecialOffers) {
-      if (
-        specialOffer.freeProductId &&
-        selectedProductsIds?.includes(specialOffer.freeProductId)
-      ) {
-        freeProductName = selectedProducts.find(
-          (product) => product.id === specialOffer.freeProductId,
-        )?.name;
-      }
-      const filteredProducts = selectedProducts.filter(
+      getFreeProductName(specialOffer);
+      const productsNotIncludedInSpecialOffer = selectedProducts.filter(
         (product) =>
-          !specialOffer.requiredProductsIds?.includes(product.id) &&
+          !specialOffer.requiredProductsIds.includes(product.id) &&
           !specialOffer.freeProductId?.includes(product.id),
       );
-      filteredProducts.push(specialOffer);
+      const notIncludedProductsAndSpecialOffer = [
+        ...productsNotIncludedInSpecialOffer,
+        specialOffer,
+      ];
+
       specialOffersData.push({
         name: specialOffer.name,
         freeProductName,
         price: specialOffer.price,
-        totalPrice: getTotalPrice(filteredProducts),
+        totalPrice: getPricesSum(notIncludedProductsAndSpecialOffer),
       });
     }
     return specialOffersData.reduce((a, b) =>
@@ -50,12 +62,12 @@ const useSummary = ({
     );
   };
 
-  const theBestOffer = getTheBestOffer();
+  const theBestOfferObject = getTheBestOffer();
 
   return {
     priceWithoutDiscount,
     possibleSpecialOffers,
-    theBestOffer,
+    theBestOfferObject,
   };
 };
 

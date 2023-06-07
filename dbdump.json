@@ -7,7 +7,8 @@
       },
       {
         "id": "ADHsLYxXKo_6elF-0cFoS",
-        "name": "Telewizja"
+        "name": "Telewizja",
+        "requiredForProductId": "9qdd55dzp68XHOD4dMmre"
       },
       {
         "id": "4Y39mcqPv7D3M1eU6hRQC",
@@ -43,7 +44,7 @@
     "priceLists": [
       {
         "id": "U0wvgmsNZoyVD1DxA_-tj",
-        "name": "2023",
+        "year": 2023,
         "products": [
           {
             "productId": "uzhCixiiBJXgNb6GG2SMC",
@@ -75,7 +76,7 @@
       },
       {
         "id": "3wgMj-xBnLeki9Klw3IBS",
-        "name": "2024",
+        "year": 2024,
         "products": [
           {
             "productId": "uzhCixiiBJXgNb6GG2SMC",
@@ -107,7 +108,7 @@
       },
       {
         "id": "EGT5WC3ZgrKPIFCjokbzH",
-        "name": "2025",
+        "year": 2025,
         "products": [
           {
             "productId": "uzhCixiiBJXgNb6GG2SMC",
