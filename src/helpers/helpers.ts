@@ -139,7 +139,6 @@ export const getPriceListsData = (data: IDataObject) => {
             id: productId,
             name: product.name,
             price: price,
-            requiredForProductId: product.requiredForProductId,
             requiredProductId: product.requiredProductId,
           };
       }),

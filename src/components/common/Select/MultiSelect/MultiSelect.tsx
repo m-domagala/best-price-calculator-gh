@@ -25,15 +25,26 @@ function MultiSelect({
   const selectedProductsIds =
     stateValues?.map((stateValue) => stateValue.id) || [];
 
+  const getRequiredProductsIds = (stateValues: ISelectedProductObject[]) => {
+    return stateValues
+      .filter((stateValue) => stateValue.requiredProductId)
+      .map((requiredProductObject) => requiredProductObject.requiredProductId);
+  };
+
   const handleOptionClick = (selectedOption: ISelectedProductObject) => {
     if (!stateValues) return;
-    const { id, requiredForProductId } = selectedOption;
-    let newState;
-    if (selectedProductsIds?.includes(id)) {
-      newState = stateValues?.filter(
-        (stateValue) =>
-          stateValue.id !== id && stateValue.id !== requiredForProductId,
-      );
+    const { id } = selectedOption;
+    let newState: ISelectedProductObject[];
+    if (selectedProductsIds.includes(id)) {
+      newState = stateValues.filter((stateValue) => stateValue.id !== id);
+      const requiredProductsIds = getRequiredProductsIds(stateValues);
+      if (requiredProductsIds.includes(id)) {
+        const stateWithoutBindElement = newState.filter(
+          (newStateElement) =>
+            !requiredProductsIds.includes(newStateElement.requiredProductId),
+        );
+        newState = stateWithoutBindElement;
+      }
     } else {
       newState = [...stateValues, selectedOption];
     }

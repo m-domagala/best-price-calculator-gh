@@ -1,11 +1,11 @@
 import useSummary from './useSummary';
 import { IActiveSpecialOffer } from '../../../types';
-import styles from './Summary.module.scss';
 import {
   CURRENCY,
   SPECIALOFFERS_ACTIVE_LABEL,
   SUMMARY_LABEL,
 } from '../../../constants';
+import styles from './Summary.module.scss';
 
 function Summary({ activePriceList, selectedProducts }: IActiveSpecialOffer) {
   const { priceWithoutDiscount, possibleSpecialOffers, theBestOfferObject } =

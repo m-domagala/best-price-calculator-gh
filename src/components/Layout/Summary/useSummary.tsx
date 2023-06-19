@@ -35,21 +35,27 @@ const useSummary = ({
     )?.name;
   };
 
+  const getProductsNotIncludedInSpecialOffer = (
+    specialOffer: IActivePriceListSpecialOffer,
+  ) => {
+    return selectedProducts.filter(
+      (product) =>
+        !specialOffer.requiredProductsIds.includes(product.id) &&
+        !specialOffer.freeProductId?.includes(product.id),
+    );
+  };
+
   const getTheBestOffer = () => {
     if (possibleSpecialOffers.length === 0) return;
     const specialOffersData = [];
     for (const specialOffer of possibleSpecialOffers) {
       getFreeProductName(specialOffer);
-      const productsNotIncludedInSpecialOffer = selectedProducts.filter(
-        (product) =>
-          !specialOffer.requiredProductsIds.includes(product.id) &&
-          !specialOffer.freeProductId?.includes(product.id),
-      );
+      const productsNotIncludedInSpecialOffer =
+        getProductsNotIncludedInSpecialOffer(specialOffer);
       const notIncludedProductsAndSpecialOffer = [
         ...productsNotIncludedInSpecialOffer,
         specialOffer,
       ];
-
       specialOffersData.push({
         name: specialOffer.name,
         freeProductName,

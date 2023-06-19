@@ -13,7 +13,6 @@ export interface IDataNamedShared {
 
 export interface IDataProduct extends IDataNamedShared {
   requiredProductId?: string;
-  requiredForProductId?: string;
 }
 
 export interface IDataSpecialOffer extends IDataNamedShared {
@@ -56,7 +55,6 @@ export interface ISelectedProductObject {
   id: string;
   name: string;
   price: number;
-  requiredForProductId?: string;
   requiredProductId?: string;
 }
 
