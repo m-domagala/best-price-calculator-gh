@@ -1,10 +1,11 @@
 import AnimatedDots from './AnimatedDots/AnimatedDots';
+import { DATA_FETCHING_MESSAGE } from '../../../constants';
 
 const LoadingMessage = () => {
   return (
     <section>
       <p>
-        Trwa pobieranie danych{' '}
+        {DATA_FETCHING_MESSAGE}{' '}
         <span>
           <AnimatedDots />
         </span>

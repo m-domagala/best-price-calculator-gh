@@ -16,6 +16,9 @@ export const PRODUCTS_NO_PRICELIST_MESSAGE = 'Nie wybrano cennika';
 export const PRODUCTS_NO_PRODUCTS_MESSAGE = 'Brak usług w wybranym cenniku';
 export const PRODUCTS_PLACEHOLDER = 'Usługi';
 
+export const DATA_FETCHING_MESSAGE = 'Trwa pobieranie danych';
+export const DATA_FETCHING_ERROR_MESSAGE = 'Nie udało się pobrać danych';
+
 export const SPECIALOFFERS_ACTIVE_LABEL = 'Uwzględnione rabaty';
 
 export const SUMMARY_LABEL = 'RAZEM';

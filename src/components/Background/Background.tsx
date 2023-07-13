@@ -1,0 +1,265 @@
+import React from 'react';
+import styles from './Background.module.scss';
+import Bubble from './Bubble/Bubble';
+
+function Background() {
+  return (
+    <div className={styles.background}>
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+      <Bubble size='s' quarter={1} />
+
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+      <Bubble size='m' quarter={1} />
+
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+      <Bubble size='l' quarter={1} />
+
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+      <Bubble size='s' quarter={2} />
+
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+      <Bubble size='m' quarter={2} />
+
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+      <Bubble size='l' quarter={2} />
+
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+      <Bubble size='s' quarter={3} />
+
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+      <Bubble size='m' quarter={3} />
+
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+      <Bubble size='l' quarter={3} />
+
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+      <Bubble size='s' quarter={4} />
+
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+      <Bubble size='m' quarter={4} />
+
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+      <Bubble size='l' quarter={4} />
+    </div>
+  );
+}
+
+const MemoizedBackground = React.memo(Background);
+
+export default MemoizedBackground;

@@ -116,3 +116,8 @@ export interface IActiveSpecialOffer {
   activePriceList: IActivePriceListObject;
   selectedProducts: ISelectedProductObject[];
 }
+
+export interface IBubble {
+  size: 's' | 'm' | 'l';
+  quarter: 1 | 2 | 3 | 4;
+}

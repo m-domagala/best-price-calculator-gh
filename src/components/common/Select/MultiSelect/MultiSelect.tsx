@@ -39,11 +39,11 @@ function MultiSelect({
       newState = stateValues.filter((stateValue) => stateValue.id !== id);
       const requiredProductsIds = getRequiredProductsIds(stateValues);
       if (requiredProductsIds.includes(id)) {
-        const stateWithoutBindElement = newState.filter(
+        const stateWithoutBoundElement = newState.filter(
           (newStateElement) =>
             !requiredProductsIds.includes(newStateElement.requiredProductId),
         );
-        newState = stateWithoutBindElement;
+        newState = stateWithoutBoundElement;
       }
     } else {
       newState = [...stateValues, selectedOption];

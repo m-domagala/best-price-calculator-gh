@@ -3,6 +3,7 @@ import axios from 'axios';
 import Layout from './components/Layout/Layout';
 import ErrorMessage from './components/messages/ErrorMessage/ErrorMessage';
 import LoadingMessage from './components/messages/LoadingMessage/LoadingMessage';
+import Background from './components/Background/Background';
 import { API_URL, DATA_QUERY } from './constants';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       {isLoading && <LoadingMessage />}
       {error && <ErrorMessage error={error} />}
       {data && <Layout data={data} />}
+      <Background />
     </main>
   );
 }

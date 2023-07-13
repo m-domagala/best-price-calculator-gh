@@ -2,11 +2,20 @@
   --color-white: rgb(255, 255, 255);
   --color-dark: rgb(30, 30, 30);
   --color-gray: rgb(230, 230, 230);
+  --color-main-bg: rgba(255, 255, 255, 0.4);
+  --color-bubble: rgba(255, 255, 255, 0.3);
+  --color-scrollbar: rgba(255, 255, 255, 0.8);
   --color-disabled: rgb(150, 150, 150);
   --color-bluish-light: rgb(237, 248, 255);
   --color-bluish-dark: rgb(40, 173, 255);
   --color-success: rgb(38, 175, 63);
   --color-error: rgb(253, 54, 54);
+
+  --gradient-background: linear-gradient(
+    -45deg,
+    rgba(0, 204, 255, 0.5),
+    rgba(174, 0, 255, 0.5)
+  );
 
   --gap: 8px;
   --gap2: calc(var(--gap) * 2);
