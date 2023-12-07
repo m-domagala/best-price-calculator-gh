@@ -74,32 +74,35 @@ function MultiSelect({
           }}
           ref={optionsRef}
         >
-          {data?.map((option) => (
-            <li key={nanoid()}>
-              <Button
-                onClick={() => handleOptionClick(option)}
-                tabIndex={-1}
-                name={option.name}
-                disabled={
-                  option.requiredProductId
-                    ? checkIsElementRestricted(
+          {data?.map((option) => {
+            if (option.name !== '')
+              return (
+                <li key={nanoid()}>
+                  <Button
+                    onClick={() => handleOptionClick(option)}
+                    tabIndex={-1}
+                    name={option.name}
+                    disabled={
+                      option.requiredProductId
+                        ? checkIsElementRestricted(
+                            option.requiredProductId,
+                            selectedProductsIds,
+                          )
+                        : false
+                    }
+                    disabledMessage={
+                      option.requiredProductId &&
+                      `Wymagany produkt: "${getElementName(
                         option.requiredProductId,
-                        selectedProductsIds,
-                      )
-                    : false
-                }
-                disabledMessage={
-                  option.requiredProductId &&
-                  `Wymagany produkt: "${getElementName(
-                    option.requiredProductId,
-                    data,
-                  )}"`
-                }
-                icon='checkmark'
-                isActive={selectedProductsIds.includes(option.id)}
-              />
-            </li>
-          ))}
+                        data,
+                      )}"`
+                    }
+                    icon='checkmark'
+                    isActive={selectedProductsIds.includes(option.id)}
+                  />
+                </li>
+              );
+          })}
         </ul>
       </div>
     </div>

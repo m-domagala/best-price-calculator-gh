@@ -42,26 +42,31 @@ export const getPriceListsData = (data: IDataObject) => {
       year: priceList.year,
       products: priceList.products.map((priceListProduct) => {
         const { productId, price } = priceListProduct;
-        const product = getProduct(productId, products);
-        if (product)
-          return {
-            id: productId,
-            name: product.name,
-            price: price,
-            requiredProductId: product.requiredProductId,
-          };
+        const product = getProduct(productId, products) ?? {
+          name: '',
+          requiredProductId: undefined,
+        };
+        return {
+          id: productId,
+          name: product.name,
+          price: price,
+          requiredProductId: product.requiredProductId,
+        };
       }),
       specialOffers: priceList.specialOffers.map((priceListSpecialOffer) => {
         const { specialOfferId, price } = priceListSpecialOffer;
-        const specialOffer = getSpecialOffer(specialOfferId, specialOffers);
-        if (specialOffer)
-          return {
-            id: specialOfferId,
-            name: specialOffer.name,
-            price: price,
-            requiredProductsIds: specialOffer.requiredProductsIds,
-            freeProductId: specialOffer.freeProductId,
-          };
+        const specialOffer = getSpecialOffer(specialOfferId, specialOffers) ?? {
+          name: '',
+          requiredProductsIds: [''],
+          freeProductId: undefined,
+        };
+        return {
+          id: specialOfferId,
+          name: specialOffer.name,
+          price: price,
+          requiredProductsIds: specialOffer.requiredProductsIds,
+          freeProductId: specialOffer.freeProductId,
+        };
       }),
     };
   });
