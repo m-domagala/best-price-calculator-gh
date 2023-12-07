@@ -2,7 +2,7 @@ export type TSetBoolean = React.Dispatch<React.SetStateAction<boolean>>;
 
 export type TRefElement = React.RefObject<HTMLElement>;
 
-export interface IDataNamedShared {
+interface IDataNamedShared {
   id: string;
   name: string;
 }
@@ -16,25 +16,19 @@ export interface IDataSpecialOffer extends IDataNamedShared {
   freeProductId?: string;
 }
 
-export type TDataNamedElement = ISelectedProductObject;
-
-export interface IDataPricedShared {
+interface IDataPricedShared {
   price: number;
 }
 
-export interface IDataPriceListProduct extends IDataPricedShared {
+interface IDataPriceListProduct extends IDataPricedShared {
   productId: string;
 }
 
-export interface IDataPriceListSpecialOffer extends IDataPricedShared {
+interface IDataPriceListSpecialOffer extends IDataPricedShared {
   specialOfferId: string;
 }
 
-export type TDataPricedElement =
-  | IDataPriceListProduct
-  | IDataPriceListSpecialOffer;
-
-export interface IDataPriceList {
+interface IDataPriceList {
   id: string;
   year: number;
   products: IDataPriceListProduct[];
@@ -73,7 +67,7 @@ export interface IData {
   data: IDataObject;
 }
 
-export interface ISelectCommon {
+interface ISelectCommon {
   label: string;
   defaultPlaceholder: string;
   disabledMessage: string;

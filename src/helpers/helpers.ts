@@ -1,7 +1,6 @@
 import {
   TRefElement,
   TSetBoolean,
-  TDataNamedElement,
   IDataProduct,
   IDataSpecialOffer,
   IDataObject,
@@ -21,7 +20,7 @@ const getSpecialOffer = (specialOfferId: string, data: IDataSpecialOffer[]) => {
 
 export const getElementName = (
   elementId: string,
-  data: TDataNamedElement[],
+  data: ISelectedProductObject[],
 ) => {
   const dataElement = data.find((element) => element.id === elementId);
   return dataElement?.name;
