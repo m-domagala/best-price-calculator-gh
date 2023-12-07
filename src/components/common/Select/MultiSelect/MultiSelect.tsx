@@ -1,9 +1,9 @@
 import { nanoid } from 'nanoid';
-import Button from '../../Button/Button';
+import Button from '../../Button';
 import useSelect from '../useSelect';
 import { IMultiSelect, ISelectedProductObject } from '../../../../types';
 import { getElementName, checkIsElementRestricted } from '../../../../helpers';
-import styles from './../Select.module.scss';
+import styles from '../Select.module.scss';
 
 function MultiSelect({
   stateValues,

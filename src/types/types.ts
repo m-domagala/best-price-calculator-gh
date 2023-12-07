@@ -1,7 +1,3 @@
-export type TSetId = React.Dispatch<React.SetStateAction<string | null>>;
-
-export type TSetIds = React.Dispatch<React.SetStateAction<string[]>>;
-
 export type TSetBoolean = React.Dispatch<React.SetStateAction<boolean>>;
 
 export type TRefElement = React.RefObject<HTMLElement>;

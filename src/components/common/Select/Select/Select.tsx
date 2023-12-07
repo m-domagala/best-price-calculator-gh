@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import Button from '../../Button/Button';
+import Button from '../../Button';
 import useSelect from '../useSelect';
 import { ISelect } from '../../../../types';
 import styles from './../Select.module.scss';

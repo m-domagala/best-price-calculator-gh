@@ -1,9 +1,8 @@
-import Tooltip from './Tooltip/Tooltip';
+import Tooltip from './Tooltip';
 import LockIcon from '../../../assets/svgs/lock.svg';
 import ChevronIcon from '../../../assets/svgs/chevron.svg';
 import CheckmarkIcon from '../../../assets/svgs/checkmark.svg';
-import { IButton } from '../../../types/types';
-
+import { IButton } from '../../../types';
 import styles from './Button.module.scss';
 
 function Button({

@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { IList } from '../../../types/types';
+import { IList } from '../../../types';
 import { CURRENCY } from '../../../constants';
 
 function Products({ data }: IList) {

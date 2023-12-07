@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import Layout from './components/Layout/Layout';
-import ErrorMessage from './components/messages/ErrorMessage/ErrorMessage';
-import LoadingMessage from './components/messages/LoadingMessage/LoadingMessage';
-import Background from './components/Background/Background';
+import Layout from './components/Layout';
+import ErrorMessage from './components/messages/ErrorMessage';
+import LoadingMessage from './components/messages/LoadingMessage';
+import Background from './components/Background';
 import { API_URL, DATA_QUERY } from './constants';
 
 function App() {

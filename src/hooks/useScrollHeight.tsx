@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TRefElement } from '../types/types';
+import { TRefElement } from '../types';
 
 const useScrollHeight = (elementRef: TRefElement, isOpen: boolean) => {
   const [scrollHeight, setScrollHeight] = useState(0);

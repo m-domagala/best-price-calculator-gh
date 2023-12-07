@@ -1,4 +1,4 @@
-import AnimatedDots from './AnimatedDots/AnimatedDots';
+import AnimatedDots from './AnimatedDots';
 import { DATA_FETCHING_MESSAGE } from '../../../constants';
 
 const LoadingMessage = () => {

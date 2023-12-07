@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Background.module.scss';
-import Bubble from './Bubble/Bubble';
+import Bubble from './Bubble';
 
 function Background() {
   return (
