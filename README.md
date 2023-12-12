@@ -1,1 +1,1 @@
-## GitHub Pages example for the https://github.com/m-domagala/best-price-calculator app
+### GitHub Pages example for https://github.com/m-domagala/best-price-calculator app
