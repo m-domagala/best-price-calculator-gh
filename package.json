@@ -2,7 +2,7 @@
   "name": "best-price-calculator-gh",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://m-domagala.github.io/best-price-calculator",
+  "homepage": "https://m-domagala.github.io/best-price-calculator-gh/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
