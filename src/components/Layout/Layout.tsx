@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Select from '../common/select/Select';
-import MultiSelect from '../common/select/MultiSelect';
+import Select from '../common/Select/Select';
+import MultiSelect from '../common/Select/MultiSelect';
 import Products from './Products';
 import Summary from './Summary';
 import { getPriceListsData } from '../../helpers';
